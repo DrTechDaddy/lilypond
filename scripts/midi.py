@@ -64,9 +64,11 @@ def _add_constants ():
         (0x02, "COPYRIGHT_NOTICE"),
         (0x03, "SEQUENCE_TRACK_NAME"),
         (0x04, "INSTRUMENT_NAME"),
-        (0x05, "LYRIC"),
+        (0x05, "LYRIC"),        #renamed LYRIC_DISPLAY MIDI RP-26
         (0x06, "MARKER"),
         (0x07, "CUE_POINT"),
+        (0x08, "PROGRAM_NAME"), #added MIDI RP-19
+        (0X09, "DEVICE_NAME"),  #added MIDI RP-19 
         (0x20, "MIDI_CHANNEL_PREFIX"),
         (0x21, "MIDI_PORT"),
         (0x2F, "END_OF_TRACK"),
@@ -74,6 +76,7 @@ def _add_constants ():
         (0x54, "SMTPE_OFFSET"),
         (0x58, "TIME_SIGNATURE"),
         (0x59, "KEY_SIGNATURE"),
+        (0x60, "XMF_PATCH_TYPE_PREFIX"),    #added MIDI RP-32
         (0x7F, "SEQUENCER_SPECIFIC_META_EVENT"),
         (0xFF, "META_EVENT"),
     )
