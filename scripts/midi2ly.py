@@ -386,10 +386,18 @@ class Text:
         'PROGRAM_NAME',
         'DEVICE_NAME', )
 
+    @staticmethod
+    def _text_only(chr):                                   #jha
+		if ((' ' <= chr <= '~') or chr in ['\n','\r']):
+			return chr
+		else: 
+			return '~'
+    
     def __init__ (self, type, text):
         self.clocks = 0
         self.type = type
-        self.text = text
+        self.text =''.join(map(self._text_only, text))      #jha
+       
 
     def dump (self):
         # urg, we should be sure that we're in a lyrics staff
@@ -407,8 +415,10 @@ class Text:
               and not self.track.lyrics_p_):
             text = self.text.replace ('(MIDI)', '').strip ()
             if text:
+                # jha: don't set instrument on multi-track Track 1
                 s = '\n  \\set Staff.instrumentName = "%(text)s"\n  ' % locals ()
         elif self.text.strip ():
+            # textlist = self.text.splitlines() %need to handle multi-line text
             s = '\n  % [' + self.text_types[self.type] + '] ' + self.text + '\n  '
         return s
 
@@ -981,7 +991,7 @@ def convert_midi (in_file, out_file):
             staves.append (Staff (t))
         prev = t
 
-    tag = '%% Lily was here -- automatically converted by %s from %s' % ( program_name, in_file)
+    tag = '%% Lily jha170112b was here -- automatically converted by %s from %s' % ( program_name, in_file) #jha
 
 
     s = tag

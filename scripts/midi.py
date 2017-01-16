@@ -25,11 +25,18 @@
 #
 # returns a MIDI file as the tuple
 #
-#  ((format, division), TRACKLIST)
+#  ((format, division), TRACKLIST)          # division (>0) = TPQN*4
+#                                           # or (<0) TBD
 #
 # each track is an EVENTLIST, where EVENT is
 #
-#   (time, (type, ARG1, [ARG2]))
+#   (time, (type, ARG1, [ARG2]))            # time = cumulative delta time
+                                            # MIDI event: 
+                                            #   type = MIDI status+channel >= x80
+                                            # META-event  = xFF:
+                                            #   type = meta-event type <= x7F
+                                            #   ARG1 = length
+                                            #   ARG2 = data
 
 import array
 import struct
