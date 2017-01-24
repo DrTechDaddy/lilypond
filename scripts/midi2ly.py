@@ -309,7 +309,10 @@ class Tempo:
         return 4 * 60 / self.seconds_per_1
 
     def dump (self):
-        return '\n  ' + '\\tempo 4 = %d ' % (self.bpm ()) + '\n  '
+        if global_options.tempo_hide:
+            return '\n  ' + '%% \\tempo 4 = %d ' % (self.bpm ()) + '\n  '
+        else:
+            return '\n  ' + '\\tempo 4 = %d ' % (self.bpm ()) + '\n  '
 
 class Clef:
     clefs = ('"bass_8"', 'bass', 'violin', '"violin^8"')
@@ -1104,6 +1107,8 @@ def get_option_parser ():
            dest='allowed_tuplets',
            help=_ ('allow tuplet durations DUR*NUM/DEN'),
            default=[])
+    p.add_option ('-T', '--tempo_hide', help=_ ('supress tempo change'),
+           action='store_true')
     p.add_option ('-V', '--verbose', help=_ ('be verbose'),
            action='store_true')
     p.version = 'midi2ly (LilyPond) @TOPLEVEL_VERSION@'
