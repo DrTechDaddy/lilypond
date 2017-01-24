@@ -69,7 +69,7 @@ class formatter:
    def __init__ (self, txt = ""):
      self.text = txt
    def format_vals (self, val1, val2 = ""):
-     return str (val1) + str(val2)
+     return str (val1) + ", " + str(val2)
    def format (self, val1, val2 = ""):
      return self.text + self.format_vals (val1, val2)
 class none_formatter (formatter):
@@ -113,8 +113,9 @@ class control_mode_formatter (formatter):
      formatter.__init__ (self, txt)
      self.mode = ch
    def format (self, val1, val2 = ""):
-     return self.text + str (self.mode) + ", " + \
+     return self.text + "Channel " + str (self.mode) + ", " + \
             self.format_vals (val1, val2)
+        #TBD: interpret controller number (val1)
 class note_formatter (channel_formatter):
    def pitch (self, val):
      pitch_names = ['C', 'Cis', 'D', 'Dis', 'E', 'F', 'Fis', 'G', 'Gis', 'A', 'Ais', 'B'];
