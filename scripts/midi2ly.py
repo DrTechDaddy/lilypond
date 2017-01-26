@@ -1107,7 +1107,7 @@ def get_option_parser ():
            dest='allowed_tuplets',
            help=_ ('allow tuplet durations DUR*NUM/DEN'),
            default=[])
-    p.add_option ('-T', '--tempo_hide', help=_ ('supress tempo change'),
+    p.add_option ('-T', '--tempo_hide', help=_ ('suppress tempo changes'),
            action='store_true')
     p.add_option ('-V', '--verbose', help=_ ('be verbose'),
            action='store_true')
